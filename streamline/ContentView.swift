@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.openWindow) var openWindow
+    
     var body: some View {
+        firstStartupView
+    }
+    
+    var firstStartupView: some View {
         VStack{
-            Text("streamline")
+            Text("Hi! Go to settings to set your projects root directory first.")
             Button(action: {
-                
+                openWindow(id: "settings")
             }) {
-                Text("Start")
+                Text("Settings")
             }
         }
         .padding()
