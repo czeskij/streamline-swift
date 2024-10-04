@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var state: AppState
     @Environment(\.openWindow) var openWindow
     
     var body: some View {
-        firstStartupView
+        if state.fileName.isEmpty {
+            return firstStartupView
+        }
+        return mainView
+    }
+    
+    var mainView: some View {
+        VStack {
+            Text("hello, ${\(state.fileName)")
+        }
     }
     
     var firstStartupView: some View {
@@ -26,8 +36,4 @@ struct ContentView: View {
         .padding()
         .frame(width: 400.0, height: 300.0)
     }
-}
-
-#Preview {
-    ContentView()
 }

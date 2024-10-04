@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var fileName: String = ""
+    @Binding var state: AppState
     
     var body: some View {
         TabView {
             VStack {
                 HStack {
-                    TextField("Projects root path", text: $fileName)
+                    TextField("Projects root path", text: $state.fileName)
                     Button("Select folder") {
                         let panel = NSOpenPanel()
                         panel.allowsMultipleSelection = false
                         panel.canChooseDirectories = true
                         if panel.runModal() == .OK {
-                            self.fileName = panel.url?.absoluteString ?? "<none>"
+                            state.fileName = panel.url?.absoluteString ?? "<none>"
                         }
                     }
                 }
@@ -31,8 +31,4 @@ struct SettingsView: View {
             }
         }
     }
-}
-
-#Preview {
-    SettingsView()
 }

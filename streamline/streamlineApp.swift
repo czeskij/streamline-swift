@@ -8,23 +8,23 @@
 import SwiftUI
 
 @Observable
-struct State {
-    
+class AppState {
+    var fileName = ""
 }
 
 @main
 struct streamlineApp: App {
-    @State var fileName: String = ""
+    @State private var state = AppState()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(state: $state)
                 .onAppear {
                     NSLog("test")
                 }
         }
         Window("Settings", id: "settings") {
-            SettingsView()
+            SettingsView(state: $state)
         }
     }
 }
