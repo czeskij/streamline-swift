@@ -12,16 +12,20 @@ struct ContentView: View {
     @Environment(\.openWindow) var openWindow
     
     var body: some View {
-        if state.fileName.isEmpty {
-            return firstStartupView
+        Group {
+            if state.fileName.isEmpty {
+                firstStartupView
+            } else {
+                mainView
+            }
         }
-        return mainView
     }
     
     var mainView: some View {
-        VStack {
-            Text("hello, ${\(state.fileName)")
+        VStack(alignment: .leading) {
+            Text("hello, \(state.fileName)")
         }
+        
     }
     
     var firstStartupView: some View {
